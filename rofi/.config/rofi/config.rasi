@@ -1,4 +1,4 @@
-configuration{ modi: "drun,run,combi";
+configuration{ modi: "drun,run,combi,custom:~/.config/rofi/custom-scripts/my-scripts";
     lines: 5;
     font: "FiraMono Nerd Font 14";
     show-icons: true;
