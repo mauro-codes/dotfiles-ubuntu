@@ -48,4 +48,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Better window split
+vim.api.nvim_set_keymap('n', '<leader>|', ':vsplit<CR>', { noremap = true })
+
+vim.api.nvim_set_keymap('n', '<leader>-', ':split<CR>', { noremap = true })
+
 -- vim: ts=2 sts=2 sw=2 et
