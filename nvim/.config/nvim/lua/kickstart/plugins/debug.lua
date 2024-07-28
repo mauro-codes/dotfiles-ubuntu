@@ -80,9 +80,34 @@ return {
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
+    -- Set red circle for the breakpoint
+    vim.fn.sign_define('DapBreakpoint', { text = '🔴' })
+    vim.fn.sign_define('DapStopped', { text = '🟢' })
+
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    -- C# Debugging
+    -- Adapter configuration
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = '/usr/local/bin/netcoredbg/netcoredbg',
+      args = { '--interpreter=vscode' },
+      name = 'coreclr',
+    }
+
+    -- Configurations
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'launch - netcoredbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end,
+      },
+    }
 
     -- Install golang specific config
     require('dap-go').setup {

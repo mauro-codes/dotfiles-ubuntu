@@ -13,7 +13,7 @@ set $mod Mod4
 
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
-exec_always feh --bg-scale ~/.config/wallpapers/cabin.png
+exec_always feh --bg-scale ~/.config/wallpapers/catppuccin-1.jpg
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -162,9 +162,10 @@ workspace $ws10 output eDP-1
 # Open specific apps on specific workspaces
 
 # Open Brave on workspace 1
-assign [class="Brave"] $ws1
+assign [class="brave-browser"] $ws1
 # start Brave
-bindsym $mod+Shift+i exec brave
+bindsym $mod+Shift+i exec brave-browser
+bindsym $mod+Shift+f exec nautilus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -199,6 +200,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Hide window titles
+for_window [class=".*"] border pixel 4
+
 gaps inner 10px
 
 set $rosewater #f5e0dc
@@ -229,7 +233,7 @@ set $mantle    #181825
 set $crust     #11111b
 
 # target                 title     bg    text      indicator    border
-client.focused           $mantle   $yellow $mantle  $rosewater  $mauve
+client.focused           $mantle   $sky   $mantle  $rosewater $mauve
 client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
 client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
 client.urgent            $peach    $base  $peach   $overlay0  $peach
@@ -238,3 +242,5 @@ client.background        $base
 
 # Avoid focus following mouse
 focus_follows_mouse no
+
+bindsym $mod+Tab exec --no-startup-id ~/.config/i3/toggle_workspaces.sh

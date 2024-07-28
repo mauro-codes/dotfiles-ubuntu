@@ -1,6 +1,6 @@
 configuration{ modi: "drun,run,custom:~/.config/rofi/custom-scripts/my-scripts";
     lines: 5;
-    font: "FiraMono Nerd Font 14";
+    font: "MesloLGS Nerd Font 14";
     show-icons: true;
     icon-theme: "Oranchelo";
     terminal: "alacritty";
