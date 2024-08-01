@@ -23,7 +23,21 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    config = function()
+      local comment = require 'Comment'
+      local ts_context_commentstring = require 'ts_context_commentstring.integrations.comment_nvim'
+      comment.setup {
+        -- for commenting tsx, jsx, svelte, html files
+        pre_hook = ts_context_commentstring.create_pre_hook(),
+      }
+    end,
+  },
 
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
