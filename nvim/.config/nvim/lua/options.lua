@@ -34,9 +34,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
+vim.opt.updatetime = 25 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
 
@@ -61,4 +59,10 @@ vim.opt.scrolloff = 10
 
 -- vim: ts=2 sts=2 sw=2 et
 -- Fix to get GitHub Copilot working
-vim.g.copilot_assume_mapped = true
+-- vim.g.copilot_assume_mapped = true
+
+vim.filetype.add {
+  extension = {
+    cshtml = 'razor',
+  },
+}
